@@ -124,7 +124,7 @@ class FormInsert(Resource):
             else:
                 update_query = """
                                UPDATE form SET full_name='%s', food='%s', music='%s', movie='%s', book='%s', poem='%s',
-                                quote='%s' WHERE unique_id = '%s')
+                                quote='%s' WHERE unique_id = '%s'
                                """ % (self.args['name'], self.args['food'], self.args['music'], self.args['movie'],
                                       self.args['book'], self.args['poem'], self.args['quote'], self.args['unique_id'])
                 cur.execute(update_query)
