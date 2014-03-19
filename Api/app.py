@@ -69,7 +69,7 @@ class Registration(Resource):
                     select_query = "SELECT username FROM users WHERE username = '%s'" % self.args['username']
                     cur.execute(select_query)
 
-                    if cur.fetchone == 0:
+                    if cur.rowcount == 0:
                         insert_query = "INSERT INTO users (unique_id, username, password) VALUES ('%s', '%s', '%s')" \
                             % (uuid.uuid4(), self.args['username'], self.args['password'])
                         cur.execute(insert_query)
@@ -86,6 +86,7 @@ class Registration(Resource):
             return {'success': 'False', 'message': 'You have illegal characters in your username'}
 
 api.add_resource(DataChecker, '/login/')
+api.add_resource(Registration, '/register/')
 
 if __name__ == '__main__':
     app.run(debug=True)
