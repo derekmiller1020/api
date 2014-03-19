@@ -24,7 +24,7 @@ class DataChecker(Resource):
 
     def data_inspector(self):
 
-        conn = mdb.connect('localhost', 'root', '', 'api', cursorclass=MySQLdb.cursors.DictCursor)
+        conn = mdb.connect('localhost', 'root', 'password', 'api', cursorclass=MySQLdb.cursors.DictCursor)
         with conn:
 
             cur = conn.cursor()
@@ -63,7 +63,7 @@ class Registration(Resource):
 
         if re.match("^[A-Za-z0-9_-]*$", self.args['username']):
             if re.match("^[A-Za-z0-9_-]*$", self.args['password']):
-                conn = mdb.connect('localhost', 'root', '', 'api', cursorclass=MySQLdb.cursors.DictCursor)
+                conn = mdb.connect('localhost', 'root', 'password', 'api', cursorclass=MySQLdb.cursors.DictCursor)
                 with conn:
                     cur = conn.cursor()
                     select_query = "SELECT username FROM users WHERE username = '%s'" % self.args['username']
