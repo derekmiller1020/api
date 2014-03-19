@@ -87,7 +87,7 @@ class Registration(Resource):
 
 class FormInsert(Resource):
 
-    def __init(self):
+    def __init__(self):
 
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('unique_id', type=str, location='form')
