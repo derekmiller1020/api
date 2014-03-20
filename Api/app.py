@@ -130,10 +130,32 @@ class FormInsert(Resource):
                 cur.execute(update_query)
                 return {'success': 'True'}
 
+class PullForm(Resource):
+
+    def get(self, unique_id):
+        the_info = self.retrieve_info(unique_id)
+
+        return the_info
+
+    def retrieve_info(self, unique_id):
+        conn = mdb.connect('localhost', 'root', 'password', 'api', cursorclass=MySQLdb.cursors.DictCursor)
+        with conn:
+            cur = conn.cursor()
+            select_query = "SELECT full_name, food, music, movie, book, poem, quote FROM form WHERE unique_id = '%s'" \
+                           % unique_id
+            cur.execute(select_query)
+            if cur.rowcount == 0:
+                return {'message': 'There is nothing here'}
+            else:
+                rows = cur.fetchone()
+
+        return rows
+
 
 api.add_resource(DataChecker, '/login/')
 api.add_resource(Registration, '/register/')
 api.add_resource(FormInsert, '/insertform/')
+api.add_resource(PullForm, '/pullform/<string:unique_id>')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.56.101')
+    app.run(debug=True, host='127.0.0.1')
