@@ -1,9 +1,6 @@
 from flask import Flask, request
 from flask.ext.restful import Resource, Api, reqparse
-import MySQLdb as mdb
-import MySQLdb.cursors
-import uuid
-import re
+
 from mysql_stuff import MysqlStuff
 
 app = Flask(__name__)
