@@ -1,6 +1,8 @@
 api
 ===
 
+RabbitMq is not being used, yet. If I put in an instant messaging system, I will use it.
+
 This is the api for the form apps
 
 CREATE DATABASE api
